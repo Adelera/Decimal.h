@@ -151,18 +151,18 @@ int s21_round(s21_decimal value, s21_decimal *result) {
 }
 
 static int s21_div10(s21_decimal *value) {
-    if (value == NULL) {
-        return 0;
-    }
+  if (value == NULL) {
+    return 0;
+  }
 
-    uint32_t remainder = 0;
+  uint32_t remainder = 0;
 
-    for (int i = 2; i >= 0; --i) {
-        uint64_t current = ((uint64_t)remainder << 32) | (uint32_t)value->bits[i];
+  for (int i = 2; i >= 0; --i) {
+    uint64_t current = ((uint64_t)remainder << 32) | (uint32_t)value->bits[i];
 
-        value->bits[i] = (int)(current / 10u);
-        remainder = (uint32_t)(current % 10u);
-    }
+    value->bits[i] = (int)(current / 10u);
+    remainder = (uint32_t)(current % 10u);
+  }
 
   return (int)remainder;
 }

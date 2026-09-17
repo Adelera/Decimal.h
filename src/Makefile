@@ -22,6 +22,9 @@ $(TEST_BIN): $(TEST_SRCS) $(TARGET)
 test: $(TEST_BIN)
 	./$(TEST_BIN)
 
+valgrind: test
+	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes ./test_bin
+
 clean:
 	rm -f $(OBJS) $(TARGET) $(TEST_BIN)
 	rm -rf gcov_report
